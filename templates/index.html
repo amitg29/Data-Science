@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{url_for('static', filename = 'css/mystyle.css')}}">
+    <title>IPL Prediction</title>
+</head>
+<body>
+    <div>
+        <div class="container">
+            <div class="ipl-header" style="text-align: center;">
+                <p><h2>First Inning Score Predictor for <i>Indian Premier League (IPL)</i></h2></p>
+                <p style="margin-top:-15px;">A machine learing web app, build with flask and deployed on heroku</p>
+            </div>
+        </div>
+        <div class="row prediction-area">
+            <div class="container div-1 column card">
+                <div class="ipl-banner-left">
+                    <div class="slider-frame">
+                        <div class="slide-images-up">
+                            <div class="image-container">
+                                <img class="image-width" src="/static/ipl_teams/mi.jpg" alt="Mumbai Indian">
+                            </div>
+                            <div class="image-container">
+                                <img class="image-width" src="static/ipl_teams/rcb.png" alt="Royal Challenge Banglore">
+                            </div> 
+                            <div class="image-container">
+                                <img class="image-width" src="static/ipl_teams/srh.png" alt="Sunrisers Hydrabad">
+                            </div>
+                            <div class="image-container">
+                                <img class="image-width" src="static/ipl_teams/dc.png" alt="Delhi Capitals">
+                            </div>
+                            <div class="image-container">
+                                <img class="image-width" src="static/ipl_teams/kkr.jpg" alt="Kolkata Knight Riders">
+                            </div>
+                            <div class="image-container">
+                                <img class="image-width" src="static/ipl_teams/rr.png" alt="Rajasthan Royal">
+                            </div>
+                            <div class="image-container">
+                                <img class="image-width" src="static/ipl_teams/kxip.png" alt="Kings XI Panjab">
+                            </div>
+                            <div class="image-container">
+                                <img class="image-width" src="static/ipl_teams/csk.png" alt="Chennai Super King">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="container div-2 column" style="float: left; width: 40%;">
+                <div>
+                    <form action="/predict" method="post">
+                        <select class="form-input align-center venue" name="venue" id="">
+                            <option value="none">--- Select Venue ---</option>
+                            <option value="M Chinnaswamy Stadium">M Chinnaswamy Stadium</option>
+                            <option value="Punjab Cricket Association Stadium, Mohali">Punjab Cricket Association Stadium, Mohali</option>
+                            <option value="Feroz Shah Kotla">Feroz Shah Kotla</option>
+                            <option value="Wankhede Stadium">Wankhede Stadium</option>
+                            <option value="Eden Gardens">Eden Gardens</option>
+                            <option value="Sawai Mansingh Stadium">Sawai Mansingh Stadium</option>
+                            <option value="Rajiv Gandhi International Stadium, Uppal">Rajiv Gandhi International Stadium, Uppal</option>
+                            <option value="MA Chidambaram Stadium, Chepauk">MA Chidambaram Stadium, Chepauk</option>
+                            <option value="Dr DY Patil Sports Academy">Dr DY Patil Sports Academy</option>
+                            <option value="Newlands">Newlands</option>
+                            <option value="St George's Park">St George's Park</option>
+                            <option value="Kingsmead">Kingsmead</option>
+                            <option value="SuperSport Park">SuperSport Park</option>
+                            <option value="Buffalo Park">Buffalo Park</option>
+                            <option value="New Wanderers Stadium">New Wanderers Stadium</option>
+                            <option value="De Beers Diamond Oval">De Beers Diamond Oval</option>
+                            <option value="OUTsurance Oval">OUTsurance Oval</option>
+                            <option value="Brabourne Stadium">Brabourne Stadium</option>
+                            <option value="Sardar Patel Stadium, Motera">Sardar Patel Stadium, Motera</option>
+                            <option value="Barabati Stadium">Barabati Stadium</option>
+                            <option value="Vidarbha Cricket Association Stadium, Jamtha">Vidarbha Cricket Association Stadium, Jamtha</option>
+                            <option value="Himachal Pradesh Cricket Association Stadium">Himachal Pradesh Cricket Association Stadium</option>
+                            <option value="Nehru Stadium">Nehru Stadium</option>
+                            <option value="Holkar Cricket Stadium">Holkar Cricket Stadium</option>
+                            <option value="Dr. Y.S. Rajasekhara Reddy ACA-VDCA Cricket Stadium">Dr. Y.S. Rajasekhara Reddy ACA-VDCA Cricket Stadium</option>
+                            <option value="Subrata Roy Sahara Stadium">Subrata Roy Sahara Stadium</option>
+                            <option value="Shaheed Veer Narayan Singh International Stadium">Shaheed Veer Narayan Singh International Stadium</option>
+                            <option value="JSCA International Stadium Complex">JSCA International Stadium Complex</option>
+                            <option value="Sheikh Zayed Stadium">Sheikh Zayed Stadium</option>
+                            <option value="Sharjah Cricket Stadium">Sharjah Cricket Stadium</option>
+                            <option value="Dubai International Cricket Stadium">Dubai International Cricket Stadium</option>
+                            <option value="Maharashtra Cricket Association Stadium">Maharashtra Cricket Association Stadium</option>
+                            <option value="Punjab Cricket Association IS Bindra Stadium, Mohali">Punjab Cricket Association IS Bindra Stadium, Mohali</option>
+                            <option value="Saurashtra Cricket Association Stadium">Saurashtra Cricket Association Stadium</option>
+                            <option value="Green Park">Green Park</option>
+                        </select>
+                        <!-- Select Batting Team -->
+                        <select class="form-input align-center" name="batting_team" id="">
+                            <option value="none">--- Select a Batting team ---</option>
+                            <option value="Mumbai Indians">Mumbai Indians</option>
+                            <option value="Kolkata Knight Riders">Kolkata Knight Riders</option>
+                            <option value="Chennai Super Kings">Chennai Super Kings</option>
+                            <option value="Rajasthan Royals">Rajasthan Royals</option>
+                            <option value="Kings XI Punjab">Kings XI Punjab</option>
+                            <option value="Royal Challengers Bangalore">Royal Challengers Bangalore</option>
+                            <option value="Delhi Daredevils">Delhi Daredevils</option>
+                            <option value="Sunrisers Hyderabad">Sunrisers Hyderabad</option>
+                        </select>
+                        </br>
+
+                        <!-- Select Bowling Team -->
+                        <select class="form-input align-center" name="bowling_team" id="">
+                            <option value="none">--- Select a Bowling team ---</option>
+                            <option value="Mumbai Indians">Mumbai Indians</option>
+                            <option value="Kolkata Knight Riders">Kolkata Knight Riders</option>
+                            <option value="Chennai Super Kings">Chennai Super Kings</option>
+                            <option value="Rajasthan Royals">Rajasthan Royals</option>
+                            <option value="Kings XI Punjab">Kings XI Punjab</option>
+                            <option value="Royal Challengers Bangalore">Royal Challengers Bangalore</option>
+                            <option value="Delhi Daredevils">Delhi Daredevils</option>
+                            <option value="Sunrisers Hyderabad">Sunrisers Hyderabad</option>
+                        </select></br>
+
+                        <input class="form-input" type="float" name="overs" placeholder="Overs (>= 5.0) eg. 7.2" required="true"><br>
+                        <input class="form-input" type="number" name="runs" placeholder="Runs eg. 64" required="true"><br>
+                        <input class="form-input" type="number" name="wickets" placeholder="Wickets eg. 4" required="true"><br>
+                        <input class="form-input" type="number" name="runs_in_prev_5" placeholder="Runs scored in previous 5 Overs eg. 42" required="true"><br>
+                        <input class="form-input" type="number" name="wickets_in_prev_5" placeholder="Wickets taken in previous 5 Overs eg. 3" required="true"><br>
+
+			            <input type="submit" class="myButton" value="Predict Score">
+                    </form>
+                </div>              
+            </div>
+            <div class="div-3 column">
+                <div class="card">
+                    <div class="ipl-banner-right">
+                        <div class="slider-frame">
+                            <div class="slide-images-down">
+                                <div class="image-container">
+                                    <img class="image-width" src="static/ipl_teams/mi.jpg" alt="Mumbai Indian">
+                                </div>
+                                <div class="image-container">
+                                    <img class="image-width" src="static/ipl_teams/rcb.png" alt="Royal Challenge Banglore">
+                                </div> 
+                                <div class="image-container">
+                                    <img class="image-width" src="static/ipl_teams/srh.png" alt="Sunrisers Hydrabad">
+                                </div>
+                                <div class="image-container">
+                                    <img class="image-width" src="static/ipl_teams/dc.png" alt="Delhi Capitals">
+                                </div>
+                                <div class="image-container">
+                                    <img class="image-width" src="static/ipl_teams/kkr.jpg" alt="Kolkata Knight Riders">
+                                </div>
+                                <div class="image-container">
+                                    <img class="image-width" src="static/ipl_teams/rr.png" alt="Rajasthan Royal">
+                                </div>
+                                <div class="image-container">
+                                    <img class="image-width" src="static/ipl_teams/kxip.png" alt="Kings XI Panjab">
+                                </div>
+                                <div class="image-container">
+                                    <img class="image-width" src="static/ipl_teams/csk.png" alt="Chennai Super King">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

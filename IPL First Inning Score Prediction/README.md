@@ -1,2 +1,2 @@
-#IPL First Inning Score Prediction
-It helps user to predict first inning score in IPL.
+# Machine-Learning-Projects
+It helps user to predict IPL first inning score prediction.

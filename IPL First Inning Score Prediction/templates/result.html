@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{url_for('static', filename = 'css/mystyle12.css')}}">
+    <link rel="stylesheet" href="{{url_for('static', filename = 'css/mystyle.css')}}">
+    <title>IPL Prediction</title>
+</head>
+<body>
+    <div>
+        <div class="container">
+            <div class="ipl-header" style="text-align: center;">
+                <p><h2>First Inning Score Predictor for <i>Indian Premier League (IPL)</i></h2></p>
+                <p style="margin-top:-15px;">A machine learing web app, build with flask and deployed on heroku</p>
+            </div>
+        </div>
+        <div class="row prediction-area">
+            <div class="container div-1 column card">
+                <div class="ipl-banner-left">
+                    <div class="slider-frame">
+                        <div class="slide-images-up">
+                            <div class="image-container">
+                                <img class="image-width" src="static/ipl_teams/mi.jpg" alt="Mumbai Indian">
+                            </div>
+                            <div class="image-container">
+                                <img class="image-width" src="static/ipl_teams/rcb.png" alt="Royal Challenge Banglore">
+                            </div> 
+                            <div class="image-container">
+                                <img class="image-width" src="static/ipl_teams/srh.png" alt="Sunrisers Hydrabad">
+                            </div>
+                            <div class="image-container">
+                                <img class="image-width" src="static/ipl_teams/dc.png" alt="Delhi Capitals">
+                            </div>
+                            <div class="image-container">
+                                <img class="image-width" src="static/ipl_teams/kkr.jpg" alt="Kolkata Knight Riders">
+                            </div>
+                            <div class="image-container">
+                                <img class="image-width" src="static/ipl_teams/rr.png" alt="Rajasthan Royal">
+                            </div>
+                            <div class="image-container">
+                                <img class="image-width" src="static/ipl_teams/kxip.png" alt="Kings XI Panjab">
+                            </div>
+                            <div class="image-container">
+                                <img class="image-width" src="static/ipl_teams/csk.png" alt="Chennai Super King">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="container div-2 column" style="float: left; width: 40%;">
+                <div class="result">
+                    Predicted score range is {{lower_limit}} to {{upper_limit}}.
+                </div>              
+            </div>
+            <div class="div-3 column">
+                <div class="card">
+                    <div class="ipl-banner-right">
+                        <div class="slider-frame">
+                            <div class="slide-images-down">
+                                <div class="image-container">
+                                    <img class="image-width" src="static/ipl_teams/mi.jpg" alt="Mumbai Indian">
+                                </div>
+                                <div class="image-container">
+                                    <img class="image-width" src="static/ipl_teams/rcb.png" alt="Royal Challenge Banglore">
+                                </div> 
+                                <div class="image-container">
+                                    <img class="image-width" src="static/ipl_teams/srh.png" alt="Sunrisers Hydrabad">
+                                </div>
+                                <div class="image-container">
+                                    <img class="image-width" src="static/ipl_teams/dc.png" alt="Delhi Capitals">
+                                </div>
+                                <div class="image-container">
+                                    <img class="image-width" src="static/ipl_teams/kkr.jpg" alt="Kolkata Knight Riders">
+                                </div>
+                                <div class="image-container">
+                                    <img class="image-width" src="static/ipl_teams/rr.png" alt="Rajasthan Royal">
+                                </div>
+                                <div class="image-container">
+                                    <img class="image-width" src="static/ipl_teams/kxip.png" alt="Kings XI Panjab">
+                                </div>
+                                <div class="image-container">
+                                    <img class="image-width" src="static/ipl_teams/csk.png" alt="Chennai Super King">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
